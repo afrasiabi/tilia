@@ -16,21 +16,22 @@ imgs = [
 	}
 ]
 
-makeTileHTML = (tileInfo) ->
-	tileHTML = """
-		<div class="tileContainer">
-			<img src="#{tileInfo.src}" alt="#{tileInfo.title}">
-			<div class="titleBar">
-				<div class="title">#{tileInfo.title.toLowerCase()}</div>
-				<div class="desc">#{tileInfo.desc}</div>
-			</div>
+makeTileElement = (tileInfo) ->
+	tileInnerHTML = """
+		<img src="#{tileInfo.src}" alt="#{tileInfo.title}">
+		<div class="titleBar">
+			<div class="title">#{tileInfo.title.toLowerCase()}</div>
+			<div class="desc">#{tileInfo.desc}</div>
 		</div>
 	"""
 
+	tileContainerElement = document.createElement "div"
+	tileContainerElement.classList.add "tileContainer"
+	tileContainerElement.innerHTML = tileInnerHTML
+	return tileContainerElement
+
 tileHolderElement = document.getElementById("tileHolder")
 
-tileHolderInnerHTML = ""
 for img in imgs
-	tileHolderInnerHTML += makeTileHTML(img)
-
-tileHolderElement.innerHTML = tileHolderInnerHTML
+	tileElement = makeTileElement(img)
+	tileHolderElement.appendChild(tileElement)
