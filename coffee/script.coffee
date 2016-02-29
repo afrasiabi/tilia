@@ -27,11 +27,31 @@ makeTileElement = (tileInfo) ->
 
 	tileContainerElement = document.createElement "div"
 	tileContainerElement.classList.add "tileContainer"
+	tileContainerElement.classList.add "unFocusTile"
 	tileContainerElement.innerHTML = tileInnerHTML
 	return tileContainerElement
 
 tileHolderElement = document.getElementById("tileHolder")
-
+tileElementFocus = null
 for img in imgs
 	tileElement = makeTileElement(img)
+
+	tileElement.addEventListener "click", (event) ->
+		if tileElementFocus?
+			tileElementFocus.classList.remove "focusTile"
+			tileElementFocus.classList.add "unFocusTile"
+
+		if tileElementFocus is @
+			tileElementFocus = null
+			return
+		tileElementFocus = @
+		tileElementFocus.classList.add "focusTile"
+		tileElementFocus.classList.remove "unFocusTile"
+
+
+		
+
+
+
+
 	tileHolderElement.appendChild(tileElement)

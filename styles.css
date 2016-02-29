@@ -11,9 +11,22 @@
 .tileContainer {
 	position: relative;
 	margin: 20px;
-	width: 400px;
-	height: 300px;
+	width: 800px;
+	height: 600px;
+	transform: scale(.5, .5);
+	transition: 300ms all cubic-bezier(0, 1.52, 1, 1.01);
+	cursor: zoom-in;
 }
+
+.focusTile {
+	transform: scale(1, 1);
+	cursor: zoom-out;
+}
+
+.unFocusTile:hover {
+	transform: scale(.55, .55);
+}
+
 
 .tileContainer img {
 	width: 100%;
