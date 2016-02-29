@@ -1,0 +1,50 @@
+@font-face {
+	font-family: HelveticaNeue;
+	src:url("./assets/fonts/helvetica/HelveticaNeueLTStd-Md.otf");
+}
+
+@font-face {
+	font-family: HelveticaNeueLight;
+	src:url("./assets/fonts/helvetica/HelveticaNeueLTStd-Lt.otf");
+}
+
+.tileContainer {
+	position: relative;
+	margin: 20px;
+	width: 400px;
+	height: 300px;
+}
+
+.tileContainer img {
+	width: 100%;
+	height: 100%;
+}
+
+.titleBar {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background: #222;
+	opacity: .7;
+}
+
+.titleBar .title {
+    font-size: 30px;
+    color: #FFF;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+	font-family: HelveticaNeue;
+	text-transform: capitalize;
+}
+
+.titleBar .desc {
+    font-size: 20px;
+    color: #FFF;
+    position: absolute;
+    left: 20px;
+    top: 60px;
+	font-family: HelveticaNeueLight;
+}
