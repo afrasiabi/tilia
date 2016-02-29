@@ -8,23 +8,35 @@
 	src:url("./assets/fonts/helvetica/HelveticaNeueLTStd-Lt.otf");
 }
 
+#tileHolder {
+	position: absolute;
+	top: 200px;
+	left: 200px;
+	right: 200px;
+
+}
+
 .tileContainer {
+	z-index: 1;
 	position: relative;
-	margin: 20px;
-	width: 800px;
-	height: 600px;
-	transform: scale(.5, .5);
+	margin-right: 20px;
+	margin-bottom: 20px;
+	float: left;
+	width: 400px;
+	height: 300px;
+	/*transform: scale(1, 1);*/
 	transition: 300ms all cubic-bezier(0, 1.52, 1, 1.01);
 	cursor: zoom-in;
 }
 
 .focusTile {
-	transform: scale(1, 1);
+	z-index: 2;
+	/*transform: scale(2, 2);*/
 	cursor: zoom-out;
 }
 
 .unFocusTile:hover {
-	transform: scale(.55, .55);
+	transform: scale(1.05, 1.05);
 }
 
 
