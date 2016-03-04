@@ -2,10 +2,10 @@ imgs = []
 
 makeTileElement = (tileInfo) ->
 	tileInnerHTML = """
-		<img src="#{tileInfo.src}" alt="#{tileInfo.title}">
+		<img src="#{tileInfo.source}" alt="#{tileInfo.title}">
 		<div class="titleBar">
 			<div class="title">#{tileInfo.title.toLowerCase()}</div>
-			<div class="desc">#{tileInfo.desc}</div>
+			<div class="desc">#{tileInfo.description}</div>
 		</div>
 	"""
 
@@ -58,13 +58,22 @@ makeRequest = (url, cbFunc) ->
 	httpRequest.send()
 	return
 
-loadButton = document.getElementById "load"
+# loadButton = document.getElementById "load"
 tileHolderElement = document.getElementById "tileHolder"
-loadButton.addEventListener "click", (event) ->
-	makeRequest "http://localhost/project1/server/data.json", (res) ->
-		imagesInfo = JSON.parse(res)
-		for img in imagesInfo
+# loadButton.addEventListener "click", (event) ->
+# 	makeRequest "http://localhost/project1/server/data.json", (res) ->
+# 		imagesInfo = JSON.parse(res)
+# 		for img in imagesInfo
+# 			tileElement = makeTileElement(img)
+# 			setTileEvents(tileElement, img)
+# 			tileHolderElement.appendChild(tileElement)
+
+makeRequest "http://localhost:3000/getTiles", (res) ->
+	resObject = JSON.parse(res)
+	if resObject.success
+		for img in resObject.tiles
 			tileElement = makeTileElement(img)
 			setTileEvents(tileElement, img)
 			tileHolderElement.appendChild(tileElement)
-
+	else
+		alert "There was a error when loading tiles"
