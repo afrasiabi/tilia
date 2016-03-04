@@ -3,117 +3,117 @@ imgs = [
 		src: "./assets/cabin.jpg"
 		title: "Cabin"
 		desc: "A dribble shot of wierd cabin"
-		tileSize: {
-			height: 450
-			width: 600
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 450
+			width: 600
 		}
 	}
 	{
 		src: "./assets/ball.jpg"
 		title: "Ball"
 		desc: "What the heck is this"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 	{
 		src: "./assets/pencils.gif"
 		title: "pencil"
 		desc: "Beautiful!"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 450
+			width: 600
 		}
 	}
 	{
 		src: "./assets/lion.jpg"
 		title: "lion"
 		desc: "Bila misar, Khoshgele lion"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 	{
 		src: "./assets/face.jpg"
 		title: "Face"
 		desc: "Face off!"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 	{
 		src: "./assets/seed.gif"
 		title: "Earth seed"
 		desc: "Come on grow on!"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 	{
 		src: "./assets/weekend.png"
 		title: "weekend"
 		desc: "Day n Night!"
-		tileSize: {
-			height: 450
-			width: 600
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 450
+			width: 600
 		}
 	}
 	{
 		src: "./assets/beach.png"
 		title: "tortoise"
 		desc: "It's a chelonioidea, not a tortoise..."
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 	{
 		src: "./assets/button.png"
 		title: "Save Water"
 		desc: "We've all got to do our bit!"
-		tileSize: {
-			height: 300
-			width: 400
-		}
 		realSize: {
 			height: 600
 			width: 800
+		}
+		tileSize: {
+			height: 300
+			width: 400
 		}
 	}
 ]
@@ -144,6 +144,7 @@ setTileEvents = (tileElement, tileInfo) ->
 			tileElementFocus.style.height = tileInfoFocus.tileSize.height + "px"
 			tileElementFocus.classList.remove "focusTile"
 			tileElementFocus.classList.add "unFocusTile"
+			console.log tileInfoFocus
 
 		if tileElementFocus is @
 			tileElementFocus = null
@@ -156,8 +157,8 @@ setTileEvents = (tileElement, tileInfo) ->
 		tileElementFocus.classList.add "focusTile"
 		tileElementFocus.classList.remove "unFocusTile"
 
-tileHolderElement = document.getElementById("tileHolder")
+tileHolderElement = document.getElementById "tileHolder"
 for img in imgs
-	tileElement = makeTileElement(img) 
+	tileElement = makeTileElement(img)
 	setTileEvents(tileElement, img)
 	tileHolderElement.appendChild(tileElement)
