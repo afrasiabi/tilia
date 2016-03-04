@@ -1,122 +1,4 @@
-imgs = [
-	{
-		src: "./assets/cabin.jpg"
-		title: "Cabin"
-		desc: "A dribble shot of wierd cabin"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 450
-			width: 600
-		}
-	}
-	{
-		src: "./assets/ball.jpg"
-		title: "Ball"
-		desc: "What the heck is this"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-	{
-		src: "./assets/pencils.gif"
-		title: "pencil"
-		desc: "Beautiful!"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 450
-			width: 600
-		}
-	}
-	{
-		src: "./assets/lion.jpg"
-		title: "lion"
-		desc: "Bila misar, Khoshgele lion"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-	{
-		src: "./assets/face.jpg"
-		title: "Face"
-		desc: "Face off!"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-	{
-		src: "./assets/seed.gif"
-		title: "Earth seed"
-		desc: "Come on grow on!"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-	{
-		src: "./assets/weekend.png"
-		title: "weekend"
-		desc: "Day n Night!"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 450
-			width: 600
-		}
-	}
-	{
-		src: "./assets/beach.png"
-		title: "tortoise"
-		desc: "It's a chelonioidea, not a tortoise..."
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-	{
-		src: "./assets/button.png"
-		title: "Save Water"
-		desc: "We've all got to do our bit!"
-		realSize: {
-			height: 600
-			width: 800
-		}
-		tileSize: {
-			height: 300
-			width: 400
-		}
-	}
-]
+imgs = []
 
 makeTileElement = (tileInfo) ->
 	tileInnerHTML = """
@@ -157,8 +39,32 @@ setTileEvents = (tileElement, tileInfo) ->
 		tileElementFocus.classList.add "focusTile"
 		tileElementFocus.classList.remove "unFocusTile"
 
+makeRequest = (url, cbFunc) ->
+
+	alertContents = ->
+		if httpRequest.readyState == XMLHttpRequest.DONE
+			if httpRequest.status == 200
+				cbFunc httpRequest.responseText
+			else
+				alert 'There was a problem with the request.'
+		return
+
+	httpRequest = new XMLHttpRequest
+	if !httpRequest
+		alert 'Giving up :( Cannot create an XMLHTTP instance'
+		return false
+	httpRequest.onreadystatechange = alertContents
+	httpRequest.open 'GET', url
+	httpRequest.send()
+	return
+
+loadButton = document.getElementById "load"
 tileHolderElement = document.getElementById "tileHolder"
-for img in imgs
-	tileElement = makeTileElement(img)
-	setTileEvents(tileElement, img)
-	tileHolderElement.appendChild(tileElement)
+loadButton.addEventListener "click", (event) ->
+	makeRequest "http://localhost/project1/server/data.json", (res) ->
+		imagesInfo = JSON.parse(res)
+		for img in imagesInfo
+			tileElement = makeTileElement(img)
+			setTileEvents(tileElement, img)
+			tileHolderElement.appendChild(tileElement)
+
