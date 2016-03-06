@@ -40,7 +40,6 @@ setTileEvents = (tileElement, tileInfo) ->
 		tileElementFocus.classList.remove "unFocusTile"
 
 makeRequest = (url, cbFunc) ->
-
 	alertContents = ->
 		if httpRequest.readyState == XMLHttpRequest.DONE
 			if httpRequest.status == 200
@@ -59,7 +58,6 @@ makeRequest = (url, cbFunc) ->
 	return
 
 # loadButton = document.getElementById "load"
-tileHolderElement = document.getElementById "tileHolder"
 # loadButton.addEventListener "click", (event) ->
 # 	makeRequest "http://localhost/project1/server/data.json", (res) ->
 # 		imagesInfo = JSON.parse(res)
@@ -68,10 +66,12 @@ tileHolderElement = document.getElementById "tileHolder"
 # 			setTileEvents(tileElement, img)
 # 			tileHolderElement.appendChild(tileElement)
 
+tileHolderElement = document.getElementById "tileHolder"
 makeRequest "http://localhost:3000/getTiles", (res) ->
 	resObject = JSON.parse(res)
 	if resObject.success
 		for img in resObject.tiles
+			console.log resObject.tiles
 			tileElement = makeTileElement(img)
 			setTileEvents(tileElement, img)
 			tileHolderElement.appendChild(tileElement)
